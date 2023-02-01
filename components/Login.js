@@ -1,28 +1,30 @@
-import React from "react";
 import Image from "next/image";
-import metaverseBg from "../public/images/metaverse-bg.jpeg";
-import papa from "../public/images/aby.jpg";
+import { useMoralis } from "react-moralis";
+import background from "../public/images/matrix.gif";
+import myAvatar from "../public/images/aby.jpg";
 
-function Login() {
+export default function Login() {
+  const { authenticate } = useMoralis();
   return (
     <div className="bg-black relative">
+      <h1>I am app</h1>
       <div className="flex flex-col absolute z-50 h-4/6 w-full items-center justify-center space-y-4">
         <Image
           className="object-cover rounded-full"
-          src={papa}
+          src={myAvatar}
           height={200}
           width={200}
         />
-        <button className="bg-green-700 rounded-lg p-5 font-bold animate-pulse">
-          Login to the METAVERSE
+        <button
+          onClick={authenticate}
+          className="bg-green-500 rounded-lg p-5 font-bold animate-pulse"
+        >
+          Login to the Metaverse
         </button>
       </div>
       <div className="w-full h-screen">
-        <Image src={metaverseBg} layout="fill" objectFit="cover" />
+        <Image src={background} layout="fill" objectFit="cover" />
       </div>
-      Login
     </div>
   );
 }
-
-export default Login;
